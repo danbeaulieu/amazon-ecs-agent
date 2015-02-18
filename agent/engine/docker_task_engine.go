@@ -382,7 +382,7 @@ func (engine *DockerTaskEngine) CreateContainer(task *api.Task, container *api.C
 }
 
 func (engine *DockerTaskEngine) StartContainer(task *api.Task, container *api.Container) error {
-	log.Info("Starting container", "task", task, "container", container)
+	log.Info("SStarting container", "task", task, "container", container)
 	containerMap, ok := engine.state.ContainerMapByArn(task.Arn)
 	if !ok {
 		return errors.New("No such task: " + task.Arn)
@@ -397,7 +397,7 @@ func (engine *DockerTaskEngine) StartContainer(task *api.Task, container *api.Co
 	if err != nil {
 		return err
 	}
-
+        log.Info("host config", "hostConfig", hostConfig)
 	return engine.client.StartContainer(dockerContainer.DockerId, hostConfig)
 }
 

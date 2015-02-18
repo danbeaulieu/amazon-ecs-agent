@@ -104,6 +104,6 @@ func (task *Task) dockerHostConfig(container *Container, dockerContainerMap map[
 		}
 	}
 
-	hostConfig := &docker.HostConfig{Links: dockerLinkArr, Binds: container.BindMounts, PortBindings: dockerPortMap}
+	hostConfig := &docker.HostConfig{Links: dockerLinkArr, Binds: []string{"/tmp:/tmp:rw"}, PortBindings: dockerPortMap}
 	return hostConfig, nil
 }
